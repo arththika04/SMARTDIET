@@ -1,0 +1,88 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #dfe6f1;
+}
+
+.container {
+  background: #fff;
+  width: 850px;
+  height: 500px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Forms */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: all 0.6s ease-in-out;
+}
+
+.login-container {
+  left: 50%;
+}
+
+.register-container {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.active .login-container {
+  transform: translateX(-100%);
+}
+
+.container.active .register-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, #5f8dee, #6c63ff);
+  transition: transform 0.6s ease-in-out;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+.container.active .overlay {
+  transform: translateX(100%);
+}
+
+.overlay-panel {
+  color: #fff;
+  text-align: center;
+  padding: 80px 40px;
+}
+
+button {
+  background: #5f8dee;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  margin-top: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+button.ghost {
+  background: transparent;
+  border: 2px solid white;
+}
