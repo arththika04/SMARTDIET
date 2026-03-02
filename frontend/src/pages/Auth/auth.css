@@ -1,0 +1,333 @@
+/* Page background */
+.auth-page{
+  min-height: 100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 24px;
+  background: #f4f7ff;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Main card */
+.container{
+  width: min(980px, 100%);
+  height: 520px;
+  background: #fff;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(16, 24, 40, 0.12);
+}
+
+/* Forms area */
+.forms{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Each form panel takes 50% */
+.form-panel{
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  padding: 42px 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+}
+
+/* Default: login visible on RIGHT */
+.login-panel{
+  right: 0;
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+}
+.register-panel{
+  left: 0;
+  opacity: 0;
+  transform: translateX(-10%);
+  z-index: 1;
+}
+
+/* Active: register visible on LEFT */
+.container.active .login-panel{
+  opacity: 0;
+  transform: translateX(10%);
+  z-index: 1;
+}
+.container.active .register-panel{
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 2;
+}
+
+/* Overlay panel (blue) */
+.overlay{
+  position: absolute;
+  top: 0;
+  left: 0;            /* default LEFT */
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #5f8dee, #4f7fe8);
+  transition: transform 0.6s ease-in-out;
+  z-index: 5;
+
+  /* Curved inner edge (capsule feel) */
+  border-top-right-radius: 140px;
+  border-bottom-right-radius: 140px;
+}
+
+/* Slide to RIGHT on active */
+.container.active .overlay{
+  transform: translateX(100%);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 140px;
+  border-bottom-left-radius: 140px;
+}
+
+/* Overlay content */
+.overlay-content{
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  color: #fff;
+  gap: 14px;
+}
+.overlay-content h2{
+  font-size: 34px;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+.overlay-content p{
+  margin: 0;
+  opacity: 0.95;
+  max-width: 320px;
+}
+
+/* Ghost button */
+.ghost-btn{
+  width: 150px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.75);
+  background: transparent;
+  color: #fff;
+  cursor:pointer;
+  transition: transform .2s ease, background .2s ease;
+}
+.ghost-btn:hover{
+  background: rgba(255,255,255,0.14);
+  transform: translateY(-1px);
+}
+
+/* Form typography */
+.form-inner{
+  width: 100%;
+  max-width: 340px;
+}
+.title{
+  margin: 0 0 6px;
+  font-size: 28px;
+  color: #101828;
+}
+.subtitle{
+  margin: 0 0 22px;
+  color: #667085;
+  font-size: 14px;
+}
+
+.auth-form{
+  display:flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field input{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  transition: box-shadow .2s ease, border-color .2s ease;
+  background: #fff;
+}
+.field input:focus{
+  border-color: rgba(95,141,238,0.7);
+  box-shadow: 0 0 0 4px rgba(95,141,238,0.16);
+}
+
+.password-wrap{
+  position: relative;
+}
+.toggle{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #5f8dee;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Errors */
+.error{
+  margin-top: 6px;
+  font-size: 12px;
+  color: #d92d20;
+}
+
+/* Primary button */
+.primary-btn{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: none;
+  background: #5f8dee;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease;
+  box-shadow: 0 10px 22px rgba(95,141,238,0.25);
+}
+.primary-btn:hover{ transform: translateY(-1px); filter: brightness(0.98); }
+.primary-btn:disabled{ opacity: 0.7; cursor: not-allowed; }
+
+.btn-loading{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 10px;
+}
+
+/* Divider */
+.divider{
+  margin: 6px 0 2px;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  color: #98a2b3;
+  font-size: 12px;
+}
+.divider::before,
+.divider::after{
+  content:"";
+  height: 1px;
+  flex: 1;
+  background: #eaecf0;
+}
+.divider span{ white-space: nowrap; }
+
+/* Social icons */
+.social{
+  display:flex;
+  gap: 10px;
+  justify-content:center;
+  margin-top: 4px;
+}
+.social-btn{
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #eaecf0;
+  background: #fff;
+  cursor:pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: #344054;
+}
+.social-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(16,24,40,0.08);
+}
+
+.row{
+  display:flex;
+  justify-content:flex-end;
+}
+.link{
+  border:none;
+  background: transparent;
+  color: #5f8dee;
+  font-weight: 700;
+  cursor:pointer;
+  padding: 0;
+}
+.switch{
+  margin-top: 6px;
+  font-size: 13px;
+  color: #667085;
+  text-align:center;
+}
+
+/* Strength indicator */
+.strength{
+  margin-top: 10px;
+  display:flex;
+  align-items:center;
+  gap: 10px;
+}
+.bar{
+  height: 8px;
+  flex: 1;
+  border-radius: 999px;
+  background: #f2f4f7;
+  position: relative;
+  overflow:hidden;
+}
+.bar::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width: 0%;
+  transition: width .25s ease;
+  background: #5f8dee; /* keep modern */
+}
+.bar.s-0::after{ width: 0%; }
+.bar.s-1::after{ width: 25%; }
+.bar.s-2::after{ width: 50%; }
+.bar.s-3::after{ width: 75%; }
+.bar.s-4::after{ width: 100%; }
+
+.strength-text{
+  font-size: 12px;
+  color: #667085;
+  min-width: 80px;
+  text-align:right;
+}
+
+/* Responsive */
+@media (max-width: 860px){
+  .container{
+    height: auto;
+    min-height: 640px;
+  }
+  .overlay{
+    display:none; /* mobile: simple UX */
+  }
+  .form-panel{
+    position: relative;
+    width: 100%;
+    padding: 32px 22px;
+  }
+  .login-panel, .register-panel{
+    right:auto; left:auto;
+  }
+  .register-panel{ display:none; opacity:1; transform:none; }
+  .container.active .register-panel{ display:block; }
+  .container.active .login-panel{ display:none; }
+}
